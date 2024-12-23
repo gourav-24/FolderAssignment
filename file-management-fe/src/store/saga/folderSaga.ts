@@ -12,7 +12,7 @@ import {
   deleteFolderFailure,
 } from "../reducers/folderSlice";
 
-const API_URL = "http://localhost:8000/folders";
+const API_URL = `${process.env.BACKEND_API}/folders`;
 
 function* fetchFolders(action:ReturnType<typeof fetchFoldersRequest>) {
   try {
@@ -20,7 +20,7 @@ function* fetchFolders(action:ReturnType<typeof fetchFoldersRequest>) {
     if(action.payload){
       url+=`/${action.payload}`;
     }
-    //@ts-ignore
+    //@ts-expect-error
     const response = yield call(axios.get, url);
     yield put(fetchFoldersSuccess(response.data));
   } catch (error: any) {
@@ -30,7 +30,7 @@ function* fetchFolders(action:ReturnType<typeof fetchFoldersRequest>) {
 
 function* addFolder(action: ReturnType<typeof addFolderRequest>) {
   try {
-    //@ts-ignore
+    //@ts-expect-error
     const response = yield call(axios.post, API_URL, action.payload);
     yield put(addFolderSuccess(response.data));
   } catch (error: any) {
@@ -53,4 +53,3 @@ export default function* folderSaga() {
   yield takeLatest(deleteFolderRequest.type, deleteFolder);
 }
 
-// 1 virtual tech (basic questions).
