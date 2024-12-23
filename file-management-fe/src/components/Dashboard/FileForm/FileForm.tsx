@@ -10,7 +10,7 @@ const FileForm = (props:{initialFormData:TreeNode}) => {
   const [depth, setDepth] = useState(0);
   const [name, setName] = useState('');
 
-  const handleOnSubmit = (e:any)=>{
+  const handleOnSubmit = (e:React.FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     const treeNodeData:TreeNode = {
       ...initialFormData,
@@ -22,7 +22,7 @@ const FileForm = (props:{initialFormData:TreeNode}) => {
   }
   return (
     <div className="p-4 bg-white rounded shadow">
-      <form onSubmit={handleOnSubmit}>
+      <form onSubmit={(e:React.FormEvent<HTMLFormElement>)=>handleOnSubmit(e)}>
         <div>
           <label>Menu ID</label>
           <input
