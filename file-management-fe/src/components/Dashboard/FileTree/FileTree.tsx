@@ -17,13 +17,13 @@ const FileTree: React.FC = () => {
   // fetch folders
   useEffect(()=>{
     dispatch(fetchFoldersRequest(null));
-  },[]);
+  },[dispatch]);
   
 
   const [expandAll, setExpandAll] = useState(false);
   const [collapseAll, setCollapseAll] = useState(false);
 
-  const handleFolderAddClick = (e:any)=>{
+  const handleFolderAddClick = (e:unknown)=>{
     dispatch(updateDefaultDataInForm({
       id:uuidv4(),
       name:'',
